@@ -1,0 +1,39 @@
+/*
+ * Gradle build configuration for CodeAlpha Java Gradle Application
+ */
+
+plugins {
+    id 'application'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    // Logging dependency management
+    implementation 'org.apache.logging.log4j:log4j-api:2.23.1'
+    implementation 'org.apache.logging.log4j:log4j-core:2.23.1'
+
+    // Testing framework
+    testImplementation libs.junit.jupiter
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    // Google Guava dependency
+    implementation libs.guava
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+application {
+    mainClass = 'org.example.App'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
